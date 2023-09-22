@@ -158,4 +158,22 @@ public class MemberMapper {
             }
             return result;
         }
+
+    public List<ParticipantsDTO> getnoofparticipantsprteam() {
+
+        String sql = "select team_id, count(member_id) from public.registration group by team_id";
+
+        try (Connection connection = database.connect()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                return (List<ParticipantsDTO>) rs;
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
 }

@@ -1,14 +1,15 @@
 import entities.Member;
 import persistence.Database;
 import persistence.MemberMapper;
+import persistence.ParticipantsDTO;
 
 import java.util.List;
 
 public class Main {
 
-    private final static String USER = "dev";
-    private final static String PASSWORD = "ax2";
-    private final static String URL = "jdbc:mysql://localhost:3306/sportsclub?serverTimezone=CET&useSSL=false&allowPublicKeyRetrieval=true";
+    private final static String USER = "postgres";
+    private final static String PASSWORD = "postgres";
+    private final static String URL = "jdbc:postgresql://localhost:5432/sportsclub?serverTimezone=CET&useSSL=false&allowPublicKeyRetrieval=true";
 
     public static void main(String[] args) {
 
@@ -16,8 +17,10 @@ public class Main {
         MemberMapper memberMapper = new MemberMapper(db);
         List<Member> members = memberMapper.getAllMembers();
 
+
+        getnoofparticipantsprteam();
         showMembers(members);
-        showMemberById(memberMapper, 13);
+        //showMemberById(memberMapper, 13);
 
         /*  
             int newMemberId = insertMember(memberMapper);
@@ -57,6 +60,12 @@ public class Main {
         System.out.println("***** Vis alle medlemmer *******");
         for (Member member : members) {
             System.out.println(member.toString());
+        }
+    }
+
+    private static void getnoofparticipantsprteam(ParticipantsDTO s){
+        for (ParticipantsDTO lol : s ){
+            System.out.println(lol.toString());
         }
     }
 
